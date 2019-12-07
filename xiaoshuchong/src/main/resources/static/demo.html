@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>iview demo</title>
+    <script type="text/javascript" src="http://vuejs.org/js/vue.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://unpkg.com/iview/dist/styles/iview.css">
+    <script type="text/javascript" src="http://unpkg.com/iview/dist/iview.min.js"></script>
+    <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+    <script type="text/javascript" src="/js/home.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{ novelText }}</p>
+    </div>
+<script >
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            novelText: "init"
+        },
+        computed: {
+            text: function() {
+                return "";
+            }
+        },
+        mounted() {
+            axios.get("/novel/home").then(function(response){
+                vm.novelText= JSON.stringify(response.data);
+            })
+        },
+    })
+</script>
+</body>
+</html>

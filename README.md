@@ -1,2 +1,0 @@
-# xiaoshuchong
-A novel website
