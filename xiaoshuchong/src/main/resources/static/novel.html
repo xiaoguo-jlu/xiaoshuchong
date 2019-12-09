@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>小书虫</title>
+    <script type="text/javascript" src="/js/vue.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/iview.css">
+    <script type="text/javascript" src="/js/iview.min.js"></script>
+    <script type="text/javascript" src="/js/axios.min.js"></script>
+    <script type="text/javascript" src="/js/request.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div class="i-layout">
+            <i-layout>
+                <i-header style="color: aqua;">
+                </i-header>
+                <i-footer>
+                    <i-row>
+                        <i-col span="20">
+                            <Card>
+                                <p>
+                                    <h3 slot="title">{{ novel.name }}</h3>
+                                    <img :src="novel.profilePath" width="180" height="240">
+                                    <h3>{{ novel.authorName}}</h3>
+                                    <h3>{{ novel.name}}</h3>
+                                    <h4 word-wrap width="20">{{ novel.description}}</h4>
+                                </p>
+                            </Card>
+                        </i-col>
+                    </i-row>
+                </i-footer>
+            </i-layout>
+        </div>
+    </div>
+<script >
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            novel: {
+                name: "name"
+            }
+        },
+        computed: {
+            text: ""
+        },
+        methods: {
+
+        },
+        mounted() {
+            let params = getParams();
+            let novelId = params.id;
+            let url = "/novel/getNovel/"+novelId
+            axios.get(url).then(function(response){
+                vm.novel = response.data;
+            });
+        },
+    })
+</script>
+</body>
+</html>

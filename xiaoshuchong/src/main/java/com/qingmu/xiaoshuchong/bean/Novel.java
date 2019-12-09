@@ -1,50 +1,44 @@
 package com.qingmu.xiaoshuchong.bean;
 
-public class Novel {
-	private String id;
-	private String name;
-	private String author_name;
-	private String author_id;
-	private String category_id;
-	private String category;
+public class Novel extends BaseModel{
+	private static final long serialVersionUID = 6050080377146459511L;
+	private String authorId;
+	private String authorName;
+	private String categoryId;
+	private String categoryName;
+	private String profilePath;
 	private String state;
 	private String description;
 
-	public String getId() {
-		return id;
+	public String getProfilePath() {
+		return profilePath;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setProfilePath(String profilePath) {
+		this.profilePath = profilePath;
 	}
-	public String getName() {
-		return name;
+	public String getAuthorName() {
+		return authorName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setAuthorName(String authorName) {
+		this.authorName = authorName;
 	}
-	public String getAuthor_name() {
-		return author_name;
+	public String getAuthorId() {
+		return authorId;
 	}
-	public void setAuthor_name(String author_name) {
-		this.author_name = author_name;
+	public void setAuthorId(String authorId) {
+		this.authorId = authorId;
 	}
-	public String getAuthor_id() {
-		return author_id;
+	public String getCategoryId() {
+		return categoryId;
 	}
-	public void setAuthor_id(String author_id) {
-		this.author_id = author_id;
+	public void setCategoryId(String categoryId) {
+		this.categoryId = categoryId;
 	}
-	public String getCategory_id() {
-		return category_id;
+	public String getCategoryName() {
+		return categoryName;
 	}
-	public void setCategory_id(String category_id) {
-		this.category_id = category_id;
-	}
-	public String getCategory() {
-		return category;
-	}
-	public void setCategory(String category) {
-		this.category = category;
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 	public String getState() {
 		return state;
@@ -57,10 +51,5 @@ public class Novel {
 	}
 	public void setDescription(String description) {
 		this.description = description;
-	}
-	@Override
-	public String toString() {
-		return "novel [id=" + id + ", name=" + name + ", author_name=" + author_name + ", author_id=" + author_id
-				+ ", category_id=" + category_id + ", category=" + category + ", state=" + state + "]";
 	}
 }

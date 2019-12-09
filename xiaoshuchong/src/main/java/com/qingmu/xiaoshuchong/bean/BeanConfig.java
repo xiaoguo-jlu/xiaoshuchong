@@ -10,5 +10,10 @@ public class BeanConfig {
 	public Novel Novel() {
 		return new Novel();
 	}
+	
+	@Bean
+	public Category Category() {
+		return new Category();
+	}
 
 }

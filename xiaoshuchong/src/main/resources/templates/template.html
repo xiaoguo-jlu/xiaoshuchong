@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>iview demo</title>
+    <title>小书虫</title>
     <script type="text/javascript" src="/js/vue.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/iview.css">
     <script type="text/javascript" src="/js/iview.min.js"></script>
@@ -10,23 +10,34 @@
 </head>
 <body>
     <div id="app">
-        <p>{{ novelText }}</p>
+        <div class="i-layout">
+            <i-layout>
+                <i-header style="color: aqua;">
+   
+                </i-header>
+                <Content>
+ 
+                </Content>
+                <i-footer>footer</i-footer>
+            </i-layout>
+        </div>
     </div>
 <script >
     var vm = new Vue({
         el: '#app',
         data: {
-            novelText: "init"
+            someData: ""
         },
         computed: {
-            text: function() {
-                return "";
-            }
+            text: ""
+        },
+        methods: {
+
         },
         mounted() {
-            axios.get("/novel/home").then(function(response){
-                vm.novelText= JSON.stringify(response.data);
-            })
+            axios.get("/category/getCategoryList").then(function(response){
+                vm.categoryList = response.data;
+            });
         },
     })
 </script>

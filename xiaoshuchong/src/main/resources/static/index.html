@@ -1,1 +1,70 @@
-hello
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>小书虫</title>
+    <script type="text/javascript" src="/js/vue.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/iview.css">
+    <script type="text/javascript" src="/js/iview.min.js"></script>
+    <script type="text/javascript" src="/js/axios.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div class="i-layout">
+            <i-layout>
+                <i-header style="color: aqua;">
+                    <i-row justify="center">
+                        <i-col span="2" v-for="category in categoryList">{{ category.name }}</i-col>
+                    </i-row>
+                </i-header>
+                <Content>
+                    <i-row v-for="(novel, index) in novelList" :key="index">
+                        <i-col :span="6" justify="center">
+                            <Card>
+                                <a :href="'/novel.html?id='+novel.id">
+                                    <img :src="novel.profilePath" width="180" height="240" />
+                                </a>
+                                <a :href="'/novel.html?id='+novel.id">
+                                    <p>{{ novel.name }}</p>
+                                </a>
+                                <p>{{ novel.authorName }}</p>
+                                <p style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
+                                    {{ novel.description }}
+                                </p>
+                            </Card>
+                        </i-col>
+                    </i-row>
+                </Content>
+                <br>
+                <i-footer>footer</i-footer>
+            </i-layout>
+        </div>
+    </div>
+<script >
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            novelText: "init",
+            categoryList: [],
+            novelList: []
+        },
+        computed: {
+            text: function() {
+                return "";
+            }
+        },
+        methods: {
+
+        },
+        mounted() {
+            axios.get("/category/getCategoryList").then(function(response){
+                vm.categoryList = response.data;
+            });
+            axios.get("/novel/getNovelList").then(function(response){
+                vm.novelList = response.data;
+            })
+        },
+    })
+</script>
+</body>
+</html>

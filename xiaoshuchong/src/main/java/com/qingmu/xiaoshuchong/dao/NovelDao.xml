@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qingmu.xiaoshuchong.dao.NovelDao">
+    <select id = "getNovel" resultType="com.qingmu.xiaoshuchong.bean.Novel">
+        select
+	        n.id as id,
+	        n.name as name,
+            n.image_path as profilePath,
+	        n.category_id as categoryId,
+            c.text as categoryName,
+	        n.author_id as authorId,
+            a.name as authorName,
+	        n.description as description 
+        from
+	        novel n
+            left join category_t c
+                on n.category_id = c.id
+            left join author a
+                on n.author_id = a.idl
+        where id = #{id}
+    </select>
+    <select id = "getNovelList" resultType="com.qingmu.xiaoshuchong.bean.Novel">
+        select
+	        n.id as id,
+	        n.name as name,
+            n.image_path as profilePath,
+	        n.category_id as categoryId,
+            c.text as categoryName,
+	        n.author_id as authorId,
+            a.name as authorName,
+	        n.description as description 
+        from
+	        novel n
+            left join category_t c
+                on n.category_id = c.id
+            left join author a
+                on n.author_id = a.id
+        order by n.last_update_date
+        limit 8
+    </select>
+    <select id = "getChapterList" resultType="com.qingmu.xiaoshuchong.bean.Chapter">
+        select
+	        c.id as id,
+	        c.name as name,
+            c.serial as serial
+        from
+	        chapter c
+            left join novel n
+		        on c.novel_id = n.id
+        where c.novel_id = #{id}
+        order by c.serial
+    </select>
+</mapper>
